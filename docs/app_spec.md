@@ -2,19 +2,21 @@
 
 ## Proposito
 
-Pendiente de definir. El repositorio se llama `AppWindows`, pero el arbol actual no contiene codigo ni documentacion previa que permita confirmar el proposito del producto.
+AppWindows es una aplicacion de escritorio para Windows creada con WinUI 3 y Windows App SDK. El alcance inicial confirmado es mostrar una ventana "Hello world".
 
 ## Publico objetivo
 
-Pendiente de definir con el usuario.
+Pendiente de definir con el usuario. De momento se asume un usuario de escritorio Windows solo para validar el arranque tecnico.
 
 ## Requisitos funcionales
 
-Pendiente de definir.
+- La aplicacion debe abrir una ventana de escritorio.
+- La ventana principal debe mostrar el texto `Hello world`.
+- La ventana debe indicar que usa WinUI 3 + Windows App SDK.
 
-Placeholders accionables:
+Pendiente:
 
-- Definir el problema principal que resuelve la aplicacion.
+- Definir el problema principal que resolvera la aplicacion despues del Hello World.
 - Definir usuarios o roles principales.
 - Definir flujos principales de uso.
 - Definir datos que la aplicacion debe crear, leer, actualizar o eliminar.
@@ -22,11 +24,13 @@ Placeholders accionables:
 
 ## Requisitos no funcionales
 
-Pendiente de definir.
+- Plataforma objetivo inicial: Windows 10 version 1809 o superior.
+- Framework inicial: `net8.0-windows10.0.19041.0`.
+- UI: WinUI 3.
+- SDK de plataforma: Windows App SDK.
 
-Placeholders accionables:
+Pendiente:
 
-- Plataformas objetivo.
 - Requisitos de rendimiento.
 - Requisitos de seguridad y privacidad.
 - Requisitos de accesibilidad.
@@ -35,29 +39,34 @@ Placeholders accionables:
 
 ## Arquitectura
 
-Pendiente de definir.
+Arquitectura inicial:
 
-Estado actual inferido:
-
-- No hay stack tecnico visible.
-- No hay estructura de carpetas de aplicacion.
-- No hay dependencias, configuracion de runtime, CI o scripts de build detectados.
+- Solucion: `AppWindows.sln`.
+- Proyecto principal: `src/AppWindows/AppWindows.csproj`.
+- Tipo de salida: `WinExe`.
+- Tipo de empaquetado inicial: unpackaged con `WindowsPackageType=None`.
+- UI declarativa en XAML:
+  - `App.xaml`
+  - `MainWindow.xaml`
+- Codigo C# code-behind:
+  - `App.xaml.cs`
+  - `MainWindow.xaml.cs`
+- Dependencia principal: `Microsoft.WindowsAppSDK` version `2.0.1`.
 
 Pendiente:
 
-- Elegir stack de frontend/backend/escritorio si aplica.
-- Definir almacenamiento local o remoto.
+- Definir almacenamiento local o remoto si el producto lo necesita.
 - Definir estrategia de configuracion por entorno.
-- Definir estructura de modulos.
+- Definir estructura de modulos cuando exista funcionalidad real.
 
 ## Diseno/UX
 
-Pendiente de definir si aplica.
+- Interfaz grafica de escritorio con WinUI 3.
+- Pantalla inicial: ventana centrada con texto `Hello world` y subtitulo `WinUI 3 + Windows App SDK`.
 
-Placeholders accionables:
+Pendiente:
 
-- Definir si el proyecto tiene interfaz grafica, CLI, servicio o libreria.
-- Definir principios visuales y ergonomicos.
+- Definir principios visuales y ergonomicos del producto real.
 - Definir vistas o pantallas principales.
 - Definir estados vacios, carga, error y exito.
 
@@ -69,20 +78,25 @@ Estado actual:
 
 - Solo se conoce el remoto Git `origin` en GitHub.
 - No hay APIs, servicios externos o credenciales documentadas.
+- La dependencia externa de plataforma es el paquete NuGet `Microsoft.WindowsAppSDK`.
 
 ## Riesgos conocidos
 
-- El alcance funcional y tecnico todavia no esta especificado.
-- No hay pruebas ni comandos de validacion definidos.
+- El alcance funcional posterior al Hello World todavia no esta especificado.
+- El entorno actual no tiene `dotnet` disponible y MSBuild no puede resolver `Microsoft.NET.Sdk`.
 - No hay contrato de datos ni arquitectura de persistencia.
 
 ## Criterios de aceptacion
 
-Pendiente de definir para el producto.
+Criterios iniciales del Hello World:
 
-Criterios iniciales para la memoria operativa:
+- La solucion `AppWindows.sln` existe.
+- El proyecto `src/AppWindows/AppWindows.csproj` referencia Windows App SDK.
+- La app arranca una ventana WinUI 3.
+- La ventana principal muestra `Hello world`.
+- El README documenta como ejecutar el proyecto cuando el entorno tenga `dotnet`/Visual Studio configurado.
 
-- `AGENTS.md` existe y documenta el orden obligatorio de lectura.
-- `docs/agent_memory.md` captura contexto, decisiones, restricciones, entorno, avances y riesgos.
-- `docs/app_spec.md` captura la especificacion funcional y tecnica con placeholders claros.
-- `docs/roadmap.md` captura estado, checklists e historial operativo.
+Criterios pendientes:
+
+- Compilar localmente cuando se instale/configure `Microsoft.NET.Sdk`.
+- Definir criterios de aceptacion del producto real.

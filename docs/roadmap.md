@@ -7,10 +7,12 @@
 - Se inspecciono el repositorio inicial.
 - Se detecto que el arbol de trabajo no contiene archivos de aplicacion.
 - Se creo el sistema de memoria operativa persistente solicitado.
+- Se creo una aplicacion inicial WinUI 3 + Windows App SDK con una ventana "Hello world".
+- Se intento validar con MSBuild, pero el entorno no pudo resolver `Microsoft.NET.Sdk`.
 
 ## Estado actual
 
-Sistema de memoria operativa inicial creado. El producto y la arquitectura permanecen pendientes de definicion.
+Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World creada. La compilacion local esta bloqueada por falta de .NET SDK/configuracion WinUI en el entorno actual.
 
 ## Checklist completado
 
@@ -22,12 +24,16 @@ Sistema de memoria operativa inicial creado. El producto y la arquitectura perma
 - [x] Documentar reglas de cierre de sesion.
 - [x] Documentar reglas de versionado.
 - [x] Dejar placeholders accionables donde falta contexto.
+- [x] Crear solucion `AppWindows.sln`.
+- [x] Crear proyecto WinUI 3 en `src/AppWindows`.
+- [x] Crear ventana principal con `Hello world`.
+- [x] Documentar comandos previstos de restore/build/run en `README.md`.
 
 ## Checklist en curso
 
 - [ ] Confirmar si `AppWindows` es el nombre final del producto o solo el nombre del repositorio.
 - [ ] Confirmar proposito, publico objetivo y alcance funcional.
-- [ ] Confirmar stack tecnico y estrategia de build/test/deploy.
+- [ ] Instalar/configurar .NET SDK y workload/soporte WinUI para compilar localmente.
 
 ## Checklist pendiente
 
@@ -35,12 +41,13 @@ Sistema de memoria operativa inicial creado. El producto y la arquitectura perma
 - [ ] Definir requisitos no funcionales.
 - [ ] Definir arquitectura inicial.
 - [ ] Definir criterios de aceptacion del producto.
-- [ ] Crear estructura base de aplicacion cuando el alcance este confirmado.
 - [ ] Definir comandos de validacion local.
+- [ ] Ejecutar `dotnet restore` y `dotnet build` cuando `dotnet` este disponible.
 - [ ] Configurar CI/CD si aplica.
 
 ## Riesgos abiertos
 
 - Falta contexto de producto para tomar decisiones tecnicas importantes.
-- No hay codigo ni pruebas para validar el estado funcional del proyecto.
+- No hay pruebas automatizadas todavia.
+- El entorno actual no tiene `dotnet` en PATH y MSBuild no resuelve `Microsoft.NET.Sdk`.
 - El remoto `origin/main` aparece como inexistente o no sincronizado desde el estado local inicial.
