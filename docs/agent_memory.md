@@ -37,7 +37,9 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
 - El estado inicial indicaba `origin/main [gone]`, por lo que el remoto puede no tener todavia esa rama o puede requerir sincronizacion.
 - Visual Studio Build Tools 2022 esta instalado.
 - Se instalo la carga `Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools`.
-- `dotnet.exe` esta disponible en `C:\Program Files\dotnet\dotnet.exe`, aunque la sesion actual de PowerShell no tiene el PATH refrescado.
+- `dotnet.exe` esta disponible en `C:\Program Files\dotnet\dotnet.exe`.
+- `C:\Program Files\dotnet` esta en el PATH de maquina y tambien se agrego al PATH de usuario el 2026-05-21.
+- Las terminales abiertas antes del cambio pueden requerir refrescar PATH manualmente o reiniciarse.
 
 ## Estado del entorno
 
@@ -84,5 +86,6 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
 ## Riesgos activos
 
 - Falta definicion del producto, publico, alcance funcional posterior y criterios de aceptacion mas alla del Hello World.
-- La terminal actual puede necesitar refrescar PATH para encontrar `dotnet`; mientras tanto se puede usar `C:\Program Files\dotnet\dotnet.exe`.
+- Las terminales abiertas antes de configurar PATH pueden no encontrar `dotnet`; solucion temporal:
+  - `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')`
 - El remoto `origin/main` aparece como inexistente o no sincronizado en el estado local inicial.

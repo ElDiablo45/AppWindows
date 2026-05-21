@@ -11,6 +11,7 @@
 - Se intento validar con MSBuild, pero el entorno no pudo resolver `Microsoft.NET.Sdk`.
 - Se instalaron componentes de Visual Studio Build Tools para escritorio .NET.
 - Se restauro NuGet y se compilo correctamente Debug x64 con .NET CLI.
+- Se agrego `C:\Program Files\dotnet` al PATH de usuario para que PowerShell pueda resolver `dotnet`.
 
 ## Estado actual
 
@@ -39,7 +40,7 @@ Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World crea
 
 - [ ] Confirmar si `AppWindows` es el nombre final del producto o solo el nombre del repositorio.
 - [ ] Confirmar proposito, publico objetivo y alcance funcional.
-- [ ] Refrescar PATH en terminales nuevas para usar `dotnet` sin ruta completa.
+- [ ] Reiniciar terminales abiertas antes del cambio de PATH o refrescar PATH manualmente.
 
 ## Checklist pendiente
 
@@ -54,5 +55,5 @@ Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World crea
 
 - Falta contexto de producto para tomar decisiones tecnicas importantes.
 - No hay pruebas automatizadas todavia.
-- La terminal actual no tiene `dotnet` en PATH; usar `C:\Program Files\dotnet\dotnet.exe` o abrir una terminal nueva.
+- Las terminales ya abiertas antes del cambio pueden no tener `dotnet` en PATH hasta reiniciarse o refrescar `$env:Path`.
 - El remoto `origin/main` aparece como inexistente o no sincronizado desde el estado local inicial.
