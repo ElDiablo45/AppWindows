@@ -9,10 +9,12 @@
 - Se creo el sistema de memoria operativa persistente solicitado.
 - Se creo una aplicacion inicial WinUI 3 + Windows App SDK con una ventana "Hello world".
 - Se intento validar con MSBuild, pero el entorno no pudo resolver `Microsoft.NET.Sdk`.
+- Se instalaron componentes de Visual Studio Build Tools para escritorio .NET.
+- Se restauro NuGet y se compilo correctamente Debug x64 con .NET CLI.
 
 ## Estado actual
 
-Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World creada. La compilacion local esta bloqueada por falta de .NET SDK/configuracion WinUI en el entorno actual.
+Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World creada. Restore y build Debug x64 validados correctamente con .NET CLI.
 
 ## Checklist completado
 
@@ -28,12 +30,16 @@ Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World crea
 - [x] Crear proyecto WinUI 3 en `src/AppWindows`.
 - [x] Crear ventana principal con `Hello world`.
 - [x] Documentar comandos previstos de restore/build/run en `README.md`.
+- [x] Instalar/configurar soporte .NET de Visual Studio Build Tools.
+- [x] Crear `NuGet.Config` local.
+- [x] Restaurar dependencias NuGet.
+- [x] Compilar Debug x64 sin errores.
 
 ## Checklist en curso
 
 - [ ] Confirmar si `AppWindows` es el nombre final del producto o solo el nombre del repositorio.
 - [ ] Confirmar proposito, publico objetivo y alcance funcional.
-- [ ] Instalar/configurar .NET SDK y workload/soporte WinUI para compilar localmente.
+- [ ] Refrescar PATH en terminales nuevas para usar `dotnet` sin ruta completa.
 
 ## Checklist pendiente
 
@@ -42,12 +48,11 @@ Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World crea
 - [ ] Definir arquitectura inicial.
 - [ ] Definir criterios de aceptacion del producto.
 - [ ] Definir comandos de validacion local.
-- [ ] Ejecutar `dotnet restore` y `dotnet build` cuando `dotnet` este disponible.
 - [ ] Configurar CI/CD si aplica.
 
 ## Riesgos abiertos
 
 - Falta contexto de producto para tomar decisiones tecnicas importantes.
 - No hay pruebas automatizadas todavia.
-- El entorno actual no tiene `dotnet` en PATH y MSBuild no resuelve `Microsoft.NET.Sdk`.
+- La terminal actual no tiene `dotnet` en PATH; usar `C:\Program Files\dotnet\dotnet.exe` o abrir una terminal nueva.
 - El remoto `origin/main` aparece como inexistente o no sincronizado desde el estado local inicial.

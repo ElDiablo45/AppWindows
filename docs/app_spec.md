@@ -52,6 +52,8 @@ Arquitectura inicial:
   - `App.xaml.cs`
   - `MainWindow.xaml.cs`
 - Dependencia principal: `Microsoft.WindowsAppSDK` version `2.0.1`.
+- Configuracion NuGet local: `NuGet.Config`.
+- Plataforma de build recomendada por defecto: x64.
 
 Pendiente:
 
@@ -83,7 +85,7 @@ Estado actual:
 ## Riesgos conocidos
 
 - El alcance funcional posterior al Hello World todavia no esta especificado.
-- El entorno actual no tiene `dotnet` disponible y MSBuild no puede resolver `Microsoft.NET.Sdk`.
+- La terminal actual puede necesitar refrescar PATH tras instalar .NET/Visual Studio Build Tools.
 - No hay contrato de datos ni arquitectura de persistencia.
 
 ## Criterios de aceptacion
@@ -95,8 +97,8 @@ Criterios iniciales del Hello World:
 - La app arranca una ventana WinUI 3.
 - La ventana principal muestra `Hello world`.
 - El README documenta como ejecutar el proyecto cuando el entorno tenga `dotnet`/Visual Studio configurado.
+- `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore` compila sin errores despues de restaurar dependencias.
 
 Criterios pendientes:
 
-- Compilar localmente cuando se instale/configure `Microsoft.NET.Sdk`.
 - Definir criterios de aceptacion del producto real.

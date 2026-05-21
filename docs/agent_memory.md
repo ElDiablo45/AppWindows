@@ -35,8 +35,9 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
 - La rama local actual es `main`.
 - El remoto configurado es `https://github.com/ElDiablo45/AppWindows.git`.
 - El estado inicial indicaba `origin/main [gone]`, por lo que el remoto puede no tener todavia esa rama o puede requerir sincronizacion.
-- En el entorno actual no esta disponible `dotnet` en PATH.
-- Visual Studio Build Tools 2022 esta instalado, pero no puede resolver `Microsoft.NET.Sdk`.
+- Visual Studio Build Tools 2022 esta instalado.
+- Se instalo la carga `Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools`.
+- `dotnet.exe` esta disponible en `C:\Program Files\dotnet\dotnet.exe`, aunque la sesion actual de PowerShell no tiene el PATH refrescado.
 
 ## Estado del entorno
 
@@ -45,6 +46,8 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
 - Sandbox de ejecucion activo con permisos de escritura en el workspace.
 - Fecha de referencia de la sesion: 2026-05-21.
 - MSBuild detectado en `C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe`.
+- .NET SDK instalado: `9.0.314`.
+- Runtimes instalados: .NET 8.0.27 y .NET 9.0.16.
 
 ## Implementado hasta ahora
 
@@ -61,20 +64,25 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
   - `src/AppWindows/app.manifest`
   - `.gitignore`
   - `README.md`
+- Configuracion local de NuGet creada en `NuGet.Config` para restaurar desde `nuget.org` sin depender del perfil de usuario.
+- Build Debug x64 validado correctamente el 2026-05-21.
 
 ## Notas de build/deploy
 
 - Stack inicial: WinUI 3 + Windows App SDK + .NET 8 para Windows.
 - Comandos previstos cuando `dotnet` este disponible:
   - `dotnet restore`
-  - `dotnet build`
+  - `dotnet build -c Debug -p:Platform=x64`
   - `dotnet run --project src/AppWindows/AppWindows.csproj`
 - Validacion intentada con MSBuild el 2026-05-21:
   - Comando: `MSBuild.exe AppWindows.sln /restore /p:Configuration=Debug /p:Platform=x64`
   - Resultado: fallo porque no se pudo resolver `Microsoft.NET.Sdk`.
+- Validacion posterior con .NET CLI el 2026-05-21:
+  - Restore: correcto usando `NuGet.Config`.
+  - Build: correcto con `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore`.
 
 ## Riesgos activos
 
 - Falta definicion del producto, publico, alcance funcional posterior y criterios de aceptacion mas alla del Hello World.
-- El entorno actual no permite compilar hasta instalar/configurar .NET SDK y soporte WinUI/Windows App SDK.
+- La terminal actual puede necesitar refrescar PATH para encontrar `dotnet`; mientras tanto se puede usar `C:\Program Files\dotnet\dotnet.exe`.
 - El remoto `origin/main` aparece como inexistente o no sincronizado en el estado local inicial.

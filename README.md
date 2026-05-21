@@ -16,6 +16,12 @@ Desde terminal, cuando `dotnet` este disponible:
 
 ```powershell
 dotnet restore
-dotnet build
+dotnet build -c Debug -p:Platform=x64
 dotnet run --project src/AppWindows/AppWindows.csproj
+```
+
+Si la terminal actual no ha refrescado el PATH tras instalar Visual Studio Build Tools, usa la ruta completa:
+
+```powershell
+& 'C:\Program Files\dotnet\dotnet.exe' build AppWindows.sln -c Debug -p:Platform=x64
 ```

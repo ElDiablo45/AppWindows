@@ -6,3 +6,4 @@ obj/
 *.cache
 *.log
 TestResults/
+.dotnet_home/
