@@ -12,6 +12,7 @@
 - Se instalaron componentes de Visual Studio Build Tools para escritorio .NET.
 - Se restauro NuGet y se compilo correctamente Debug x64 con .NET CLI.
 - Se agrego `C:\Program Files\dotnet` al PATH de usuario para que PowerShell pueda resolver `dotnet`.
+- Se emitio notificacion de cambio de entorno y se valido build Debug x64 con SDK predeterminado .NET `10.0.300`.
 
 ## Estado actual
 
@@ -35,6 +36,8 @@ Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World crea
 - [x] Crear `NuGet.Config` local.
 - [x] Restaurar dependencias NuGet.
 - [x] Compilar Debug x64 sin errores.
+- [x] Agregar `C:\Program Files\dotnet` al PATH de usuario.
+- [x] Validar build con SDK predeterminado .NET `10.0.300`.
 
 ## Checklist en curso
 

@@ -39,6 +39,7 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
 - Se instalo la carga `Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools`.
 - `dotnet.exe` esta disponible en `C:\Program Files\dotnet\dotnet.exe`.
 - `C:\Program Files\dotnet` esta en el PATH de maquina y tambien se agrego al PATH de usuario el 2026-05-21.
+- Se emitio una notificacion de cambio de entorno (`WM_SETTINGCHANGE`) para que nuevos procesos detecten el PATH actualizado.
 - Las terminales abiertas antes del cambio pueden requerir refrescar PATH manualmente o reiniciarse.
 
 ## Estado del entorno
@@ -48,8 +49,9 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
 - Sandbox de ejecucion activo con permisos de escritura en el workspace.
 - Fecha de referencia de la sesion: 2026-05-21.
 - MSBuild detectado en `C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe`.
-- .NET SDK instalado: `9.0.314`.
-- Runtimes instalados: .NET 8.0.27 y .NET 9.0.16.
+- .NET SDKs instalados: `9.0.314` y `10.0.300`.
+- SDK predeterminado actual: `10.0.300`.
+- Runtimes instalados: .NET 8.0.27, .NET 9.0.16 y .NET 10.0.8.
 
 ## Implementado hasta ahora
 
@@ -82,6 +84,8 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
 - Validacion posterior con .NET CLI el 2026-05-21:
   - Restore: correcto usando `NuGet.Config`.
   - Build: correcto con `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore`.
+- Validacion posterior con SDK predeterminado .NET `10.0.300` el 2026-05-21:
+  - Build Debug x64 correcto con 0 errores y 0 advertencias.
 
 ## Riesgos activos
 
