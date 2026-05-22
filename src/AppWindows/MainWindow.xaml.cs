@@ -61,6 +61,8 @@ public sealed partial class MainWindow : Window
             students.Add(student);
         }
 
+        StudentCountTextBlock.Text = $"{students.Count} alumnos";
+
         var matchingSelection = students.FirstOrDefault(student => student.Id == currentStudentId);
         if (matchingSelection is not null)
         {

@@ -26,6 +26,7 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
 - Guardar la base de datos en `%LocalAppData%\AppWindows\appwindows.db`.
 - El primer modulo se llama `Alumnos`.
 - En v1 no hay borrado de alumnos; se permite crear, listar, buscar, filtrar, ver detalle y editar.
+- La direccion visual acordada para la app es un panel oscuro de gestion: menu lateral izquierdo, cabecera superior, tabla/listado principal y ficha de detalle integrada.
 
 ## Contexto funcional
 
@@ -82,6 +83,11 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
   - UI WinUI con listado, busqueda, filtro por tag, alta y detalle editable.
   - Persistencia SQLite local con esquema v1.
   - Seed automatico de carnets predefinidos.
+- Estilo visual del modulo `Alumnos` adaptado el 2026-05-22 a una interfaz oscura inspirada en panel administrativo:
+  - Menu lateral con `Inicio` y `Alumnos`.
+  - Cabecera superior con textura lineal sutil.
+  - Tabla de alumnos con columnas de descripcion, telefono, tags y fecha de alta.
+  - Panel derecho para alta/edicion.
 
 ## Notas de build/deploy
 
@@ -101,6 +107,9 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
   - Build Debug x64 correcto con 0 errores y 0 advertencias.
 - Validacion del modulo `Alumnos` el 2026-05-22:
   - `dotnet restore AppWindows.sln --configfile D:\AppWindows\NuGet.Config`
+  - `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore`
+  - Resultado: 0 errores y 0 advertencias.
+- Validacion visual del rediseño oscuro el 2026-05-22:
   - `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore`
   - Resultado: 0 errores y 0 advertencias.
 

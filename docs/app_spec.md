@@ -80,10 +80,12 @@ Pendiente:
 
 - Interfaz grafica de escritorio con WinUI 3.
 - Pantalla principal de `Alumnos`:
-  - Cabecera con accion `Nuevo alumno`.
-  - Buscador y filtro por carnet/tag.
-  - Lista de alumnos.
-  - Panel de detalle/edicion.
+  - Tema oscuro tipo panel administrativo.
+  - Menu lateral izquierdo con `Inicio` y `Alumnos`.
+  - Cabecera superior con textura lineal sutil.
+  - Buscador, filtro por carnet/tag y accion `Nuevo`.
+  - Tabla principal de alumnos con descripcion, telefono, tags y fecha de alta.
+  - Panel derecho de detalle/edicion.
 
 Pendiente:
 
@@ -121,6 +123,7 @@ Criterios del modulo `Alumnos`:
 - El usuario puede buscar por nombre, DNI/NIE o telefono.
 - El usuario puede filtrar por carnet/tag.
 - El usuario puede editar datos y tags de un alumno.
+- La pantalla principal sigue la direccion visual oscura acordada: sidebar, cabecera, tabla y panel de detalle.
 - Los datos persisten tras cerrar y abrir la app.
 - `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore` compila sin errores despues de restaurar dependencias.
 

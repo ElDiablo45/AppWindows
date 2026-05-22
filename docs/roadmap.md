@@ -22,6 +22,8 @@
 - Se implemento listado, busqueda, filtro por tag, alta, detalle y edicion sin borrado.
 - Se agrego seed de carnets predefinidos y creacion de tags personalizados.
 - Se valido restore y build Debug x64 sin errores ni advertencias.
+- Se adapto la interfaz a una direccion visual oscura tipo panel administrativo con menu lateral, cabecera, tabla y panel de detalle.
+- Se valido build Debug x64 del rediseño sin errores ni advertencias.
 
 ## Estado actual
 
@@ -56,11 +58,13 @@ Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modu
 - [x] Implementar listado con busqueda y filtro por tag.
 - [x] Implementar detalle editable sin borrado.
 - [x] Implementar tags personalizados.
+- [x] Adaptar visualmente `Alumnos` a panel oscuro con sidebar y tabla.
 
 ## Checklist en curso
 
 - [ ] Reiniciar terminales abiertas antes del cambio de PATH o refrescar PATH manualmente.
 - [ ] Realizar prueba manual completa de persistencia abriendo la app interactiva.
+- [ ] Revisar visualmente la nueva UI en ventana real con el usuario.
 
 ## Checklist pendiente
 
@@ -75,4 +79,5 @@ Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modu
 - No hay pruebas automatizadas todavia.
 - Las terminales ya abiertas antes del cambio pueden no tener `dotnet` en PATH hasta reiniciarse o refrescar `$env:Path`.
 - Falta validar manualmente el flujo completo en una ventana interactiva.
+- Falta validar visualmente proporciones, legibilidad y ergonomia en ventana real.
 - La estrategia de importacion/exportacion entre versiones esta pendiente.
