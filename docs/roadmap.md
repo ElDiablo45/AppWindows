@@ -14,9 +14,18 @@
 - Se agrego `C:\Program Files\dotnet` al PATH de usuario para que PowerShell pueda resolver `dotnet`.
 - Se emitio notificacion de cambio de entorno y se valido build Debug x64 con SDK predeterminado .NET `10.0.300`.
 
+### 2026-05-22
+
+- Se definio el primer modulo real de producto: `Alumnos` para autoescuela.
+- Se decidio usar SQLite local desde v1.
+- Se implemento esquema SQLite v1 con `Students`, `Tags`, `StudentTags` y `AppMetadata`.
+- Se implemento listado, busqueda, filtro por tag, alta, detalle y edicion sin borrado.
+- Se agrego seed de carnets predefinidos y creacion de tags personalizados.
+- Se valido restore y build Debug x64 sin errores ni advertencias.
+
 ## Estado actual
 
-Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World creada. Restore y build Debug x64 validados correctamente con .NET CLI.
+Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modulo `Alumnos` y persistencia SQLite local. Restore y build Debug x64 validados correctamente con .NET CLI.
 
 ## Checklist completado
 
@@ -38,25 +47,32 @@ Sistema de memoria operativa inicial creado. Aplicacion WinUI 3 Hello World crea
 - [x] Compilar Debug x64 sin errores.
 - [x] Agregar `C:\Program Files\dotnet` al PATH de usuario.
 - [x] Validar build con SDK predeterminado .NET `10.0.300`.
+- [x] Definir primer alcance funcional de autoescuela.
+- [x] Agregar `Microsoft.Data.Sqlite`.
+- [x] Crear esquema SQLite v1 versionado.
+- [x] Crear seed de carnets predefinidos.
+- [x] Implementar alta de alumnos.
+- [x] Implementar DNI/NIE obligatorio y unico.
+- [x] Implementar listado con busqueda y filtro por tag.
+- [x] Implementar detalle editable sin borrado.
+- [x] Implementar tags personalizados.
 
 ## Checklist en curso
 
-- [ ] Confirmar si `AppWindows` es el nombre final del producto o solo el nombre del repositorio.
-- [ ] Confirmar proposito, publico objetivo y alcance funcional.
 - [ ] Reiniciar terminales abiertas antes del cambio de PATH o refrescar PATH manualmente.
+- [ ] Realizar prueba manual completa de persistencia abriendo la app interactiva.
 
 ## Checklist pendiente
 
-- [ ] Definir requisitos funcionales del producto.
-- [ ] Definir requisitos no funcionales.
-- [ ] Definir arquitectura inicial.
-- [ ] Definir criterios de aceptacion del producto.
-- [ ] Definir comandos de validacion local.
+- [ ] Definir modulo de facturas/cobros.
+- [ ] Definir gestion de practicas y examenes.
+- [ ] Definir importacion/exportacion compatible entre versiones.
+- [ ] Definir pruebas automatizadas.
 - [ ] Configurar CI/CD si aplica.
 
 ## Riesgos abiertos
 
-- Falta contexto de producto para tomar decisiones tecnicas importantes.
 - No hay pruebas automatizadas todavia.
 - Las terminales ya abiertas antes del cambio pueden no tener `dotnet` en PATH hasta reiniciarse o refrescar `$env:Path`.
-- El remoto `origin/main` aparece como inexistente o no sincronizado desde el estado local inicial.
+- Falta validar manualmente el flujo completo en una ventana interactiva.
+- La estrategia de importacion/exportacion entre versiones esta pendiente.

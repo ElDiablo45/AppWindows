@@ -6,7 +6,7 @@ AppWindows. El nombre queda tomado del repositorio y de la aplicacion inicial Wi
 
 ## Objetivo principal
 
-Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. El primer hito es una ventana "Hello world".
+Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK orientada a la gestion de una autoescuela. El primer modulo funcional es la gestion local de alumnos.
 
 ## Decisiones activas
 
@@ -21,11 +21,19 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
 - Iniciar el proyecto como una aplicacion unpackaged (`WindowsPackageType=None`) para mantener el arranque simple.
 - Referenciar `Microsoft.WindowsAppSDK` version `2.0.1`.
 - Target framework inicial: `net8.0-windows10.0.19041.0`.
+- Usar SQLite local para persistencia inicial.
+- Referenciar `Microsoft.Data.Sqlite` version `10.0.6`.
+- Guardar la base de datos en `%LocalAppData%\AppWindows\appwindows.db`.
+- El primer modulo se llama `Alumnos`.
+- En v1 no hay borrado de alumnos; se permite crear, listar, buscar, filtrar, ver detalle y editar.
 
 ## Contexto funcional
 
-- La aplicacion inicial muestra una ventana con el texto "Hello world".
-- El alcance funcional posterior esta pendiente de especificacion.
+- La aplicacion gestiona alumnos de autoescuela.
+- Campos v1 de alumno: nombre, DNI/NIE, telefono, fecha de alta automatica, observaciones y tags/carnets.
+- DNI/NIE es obligatorio y unico. No se valida checksum en v1.
+- Tags iniciales de carnet: `AM`, `A1`, `A2`, `A`, `B`, `B+E`, `C1`, `C1+E`, `C`, `C+E`, `D1`, `D1+E`, `D`, `D+E`.
+- Se permiten tags personalizados.
 
 ## Restricciones y notas
 
@@ -70,10 +78,15 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
   - `README.md`
 - Configuracion local de NuGet creada en `NuGet.Config` para restaurar desde `nuget.org` sin depender del perfil de usuario.
 - Build Debug x64 validado correctamente el 2026-05-21.
+- Modulo `Alumnos` implementado el 2026-05-22:
+  - UI WinUI con listado, busqueda, filtro por tag, alta y detalle editable.
+  - Persistencia SQLite local con esquema v1.
+  - Seed automatico de carnets predefinidos.
 
 ## Notas de build/deploy
 
 - Stack inicial: WinUI 3 + Windows App SDK + .NET 8 para Windows.
+- Persistencia: SQLite local con `Microsoft.Data.Sqlite`.
 - Comandos previstos cuando `dotnet` este disponible:
   - `dotnet restore`
   - `dotnet build -c Debug -p:Platform=x64`
@@ -86,10 +99,14 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK. E
   - Build: correcto con `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore`.
 - Validacion posterior con SDK predeterminado .NET `10.0.300` el 2026-05-21:
   - Build Debug x64 correcto con 0 errores y 0 advertencias.
+- Validacion del modulo `Alumnos` el 2026-05-22:
+  - `dotnet restore AppWindows.sln --configfile D:\AppWindows\NuGet.Config`
+  - `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore`
+  - Resultado: 0 errores y 0 advertencias.
 
 ## Riesgos activos
 
-- Falta definicion del producto, publico, alcance funcional posterior y criterios de aceptacion mas alla del Hello World.
+- Falta definir modulos posteriores: facturas, cobros, practicas, examenes, profesores y posibles importaciones/exportaciones entre versiones.
 - Las terminales abiertas antes de configurar PATH pueden no encontrar `dotnet`; solucion temporal:
   - `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')`
-- El remoto `origin/main` aparece como inexistente o no sincronizado en el estado local inicial.
+- No hay pruebas automatizadas todavia; la validacion actual es build y pruebas manuales previstas.

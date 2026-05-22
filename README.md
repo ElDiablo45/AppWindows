@@ -1,6 +1,16 @@
 # AppWindows
 
-Aplicacion Windows de escritorio creada con WinUI 3 y Windows App SDK.
+Aplicacion Windows de escritorio para gestion de autoescuela, creada con WinUI 3 y Windows App SDK.
+
+La version actual incluye un primer modulo de **Alumnos** con persistencia local en SQLite:
+
+- Alta de alumnos con nombre, DNI/NIE, telefono, fecha de alta automatica y observaciones.
+- DNI/NIE obligatorio y unico.
+- Carnets/tags predefinidos y tags personalizados.
+- Listado con busqueda por nombre, DNI/NIE o telefono.
+- Filtro por carnet/tag.
+- Detalle editable sin borrado.
+- Base de datos local en `%LocalAppData%\AppWindows\appwindows.db`.
 
 ## Requisitos
 

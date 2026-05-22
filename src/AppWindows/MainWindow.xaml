@@ -5,20 +5,252 @@
     Title="AppWindows">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Spacing="16">
-            <TextBlock
-                HorizontalAlignment="Center"
-                FontSize="32"
-                FontWeight="SemiBold"
-                Text="Hello world" />
-            <TextBlock
-                HorizontalAlignment="Center"
-                FontSize="16"
-                Opacity="0.72"
-                Text="WinUI 3 + Windows App SDK" />
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid
+            Grid.Row="0"
+            Padding="24,20,24,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Spacing="2">
+                <TextBlock
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Text="Alumnos" />
+                <TextBlock
+                    Opacity="0.72"
+                    Text="Gestion local de alumnos, carnets y tags de la autoescuela" />
+            </StackPanel>
+
+            <Button
+                x:Name="NewStudentButton"
+                Grid.Column="1"
+                Padding="14,8"
+                Click="NewStudentButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <SymbolIcon Symbol="Add" />
+                    <TextBlock Text="Nuevo alumno" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <InfoBar
+            x:Name="StatusInfoBar"
+            Grid.Row="1"
+            Margin="24,0,24,12"
+            IsClosable="True"
+            IsOpen="False" />
+
+        <Grid
+            Grid.Row="2"
+            Padding="24,0,24,24"
+            ColumnSpacing="18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" RowSpacing="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="170" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox
+                        x:Name="SearchTextBox"
+                        Header="Buscar"
+                        PlaceholderText="Nombre, DNI/NIE o telefono"
+                        TextChanged="SearchTextBox_TextChanged" />
+
+                    <ComboBox
+                        x:Name="FilterTagComboBox"
+                        Grid.Column="1"
+                        Header="Carnet/tag"
+                        DisplayMemberPath="Name"
+                        SelectionChanged="FilterTagComboBox_SelectionChanged" />
+                </Grid>
+
+                <ListView
+                    x:Name="StudentsListView"
+                    Grid.Row="1"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    SelectionChanged="StudentsListView_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="8" RowSpacing="4">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="{Binding FullName}" />
+
+                                <StackPanel
+                                    Grid.Row="1"
+                                    Orientation="Horizontal"
+                                    Spacing="12">
+                                    <TextBlock
+                                        Opacity="0.74"
+                                        Text="{Binding DniNie}" />
+                                    <TextBlock
+                                        Opacity="0.74"
+                                        Text="{Binding Phone}" />
+                                    <TextBlock
+                                        Opacity="0.74"
+                                        Text="{Binding CreatedAtDisplay}" />
+                                </StackPanel>
+
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Opacity="0.82"
+                                    Text="{Binding TagsDisplay}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <ScrollViewer Grid.Column="1">
+                <Grid
+                    MaxWidth="760"
+                    RowSpacing="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Spacing="2">
+                            <TextBlock
+                                x:Name="EditorTitleTextBlock"
+                                FontSize="22"
+                                FontWeight="SemiBold"
+                                Text="Nuevo alumno" />
+                            <TextBlock
+                                x:Name="EditorSubtitleTextBlock"
+                                Opacity="0.72"
+                                Text="Nombre, DNI/NIE y telefono son obligatorios" />
+                        </StackPanel>
+
+                        <TextBlock
+                            x:Name="CreatedAtTextBlock"
+                            Grid.Column="1"
+                            VerticalAlignment="Bottom"
+                            Opacity="0.72" />
+                    </Grid>
+
+                    <Grid Grid.Row="1" ColumnSpacing="12" RowSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox
+                            x:Name="FullNameTextBox"
+                            Header="Nombre"
+                            PlaceholderText="Nombre completo" />
+                        <TextBox
+                            x:Name="DniTextBox"
+                            Grid.Column="1"
+                            Header="DNI/NIE"
+                            PlaceholderText="12345678A" />
+                        <TextBox
+                            x:Name="PhoneTextBox"
+                            Grid.Column="2"
+                            Header="Telefono"
+                            PlaceholderText="600 000 000" />
+                    </Grid>
+
+                    <TextBox
+                        x:Name="NotesTextBox"
+                        Grid.Row="2"
+                        AcceptsReturn="True"
+                        Header="Observaciones"
+                        Height="104"
+                        PlaceholderText="Notas internas del alumno"
+                        TextWrapping="Wrap" />
+
+                    <StackPanel
+                        Grid.Row="3"
+                        Spacing="10">
+                        <TextBlock
+                            FontSize="15"
+                            FontWeight="SemiBold"
+                            Text="Carnets y tags" />
+
+                        <StackPanel
+                            x:Name="TagCheckBoxesPanel"
+                            Orientation="Horizontal"
+                            Spacing="10" />
+
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox
+                                x:Name="CustomTagTextBox"
+                                PlaceholderText="Crear tag personalizado" />
+                            <Button
+                                x:Name="AddTagButton"
+                                Grid.Column="1"
+                                Click="AddTagButton_Click">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <SymbolIcon Symbol="Tag" />
+                                    <TextBlock Text="Agregar tag" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="4"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Button
+                            x:Name="CancelEditButton"
+                            Click="CancelEditButton_Click"
+                            Content="Limpiar" />
+                        <Button
+                            x:Name="SaveStudentButton"
+                            Click="SaveStudentButton_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <SymbolIcon Symbol="Save" />
+                                <TextBlock Text="Guardar" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>
