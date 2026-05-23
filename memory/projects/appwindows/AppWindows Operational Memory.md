@@ -138,3 +138,8 @@ Validaciones relevantes:
 - [tooling] Installed `Microsoft.WindowsAppSDK.WinUI.CSharp.Templates`; `dotnet new list` shows WinUI app templates including `winui-mvvm` outside the sandbox #winui #templates
 - [environment] Current sandbox shell may not resolve `winget` or `winapp` until PATH/App Execution Alias context is refreshed #windows #path
 - [pending] Developer Mode is disabled and requires explicit user approval plus UAC/admin elevation to enable #winui #setup
+
+## Update 2026-05-23 - Developer Mode Enabled
+
+- [tooling] Developer Mode was enabled via elevated PowerShell on 2026-05-23; registry value `HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock\AllowDevelopmentWithoutDevLicense` is `1` #winui #setup
+- [status] `winui-setup` prerequisites are now satisfied: .NET SDK >= 8, WinApp CLI, WinUI templates and Developer Mode #winui #setup

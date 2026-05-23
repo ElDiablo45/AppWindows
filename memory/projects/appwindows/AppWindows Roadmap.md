@@ -154,3 +154,8 @@ Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modu
 - [history] Ran `winui-setup` and verified `.NET SDK >= 8`; installed `Microsoft.WinAppCli` version `0.3.1` and WinUI 3 .NET templates #winui #setup
 - [status] `winapp` and WinUI templates are available outside the sandbox after PATH refresh; sandbox shell may still need refreshed alias/PATH context #winui #environment
 - [todo] Enable Developer Mode if the user approves the required UAC/admin elevation #winui #setup
+
+## Update 2026-05-23 - Developer Mode Enabled
+
+- [history] Enabled Developer Mode and verified `AllowDevelopmentWithoutDevLicense=1` #winui #setup
+- [status] WinUI setup prerequisites are complete #winui #environment
