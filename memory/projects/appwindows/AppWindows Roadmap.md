@@ -141,6 +141,7 @@ Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modu
 - [risk] Falta validar manualmente el flujo completo #qa
 - [risk] Falta definir alcance funcional posterior a alumnos #product
 - [blocked] `git push origin main` requiere aprobacion explicita del usuario por publicar en el remoto GitHub #git
+- [history] Installed Microsoft WinUI development skills from `microsoft/win-dev-skills` on 2026-05-23 #skills #winui
 
 ## Relations
 

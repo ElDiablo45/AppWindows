@@ -120,6 +120,8 @@ Validaciones relevantes:
 - [blocked] El push a `origin/main` queda pendiente de aprobacion explicita del usuario #git
 - [maintenance] Memory defrag ran on 2026-05-23 and kept the four-note core structure #memory
 - [maintenance] Defrag log lives in [[AppWindows Memory Defrag - 2026-05-23]] #memory
+- [tooling] Installed Microsoft `winui-*` skills from `microsoft/win-dev-skills` into `C:\Users\mdavi\.codex\skills` on 2026-05-23 #winui #skills
+- [note] Restart Codex to pick up newly installed `winui-*` skills #skills
 
 ## Relations
 
