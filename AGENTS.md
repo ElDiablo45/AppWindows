@@ -1,18 +1,39 @@
 # Indice operativo de agentes
 
-Este repositorio usa un sistema de memoria operativa persistente para mantener continuidad entre sesiones de desarrollo.
+Este repositorio usa Basic Memory como memoria operativa persistente para mantener continuidad entre sesiones de desarrollo. Los antiguos documentos de memoria en `docs/` fueron migrados y ya no son la fuente de verdad.
+
+## Fuente de verdad de memoria
+
+Proyecto Basic Memory: `main`.
+
+Notas principales:
+
+1. `AppWindows Operational Memory`
+2. `AppWindows Product Specification`
+3. `AppWindows Roadmap`
+4. `AppWindows Memory Migration - 2026-05-23`
+
+URLs de referencia:
+
+- `memory://main/projects/appwindows/app-windows-operational-memory`
+- `memory://main/projects/appwindows/app-windows-product-specification`
+- `memory://main/projects/appwindows/app-windows-roadmap`
+- `memory://main/projects/appwindows/app-windows-memory-migration-2026-05-23`
 
 ## Orden obligatorio de lectura
 
-Antes de continuar cualquier desarrollo, leer y aplicar estos documentos en este orden:
+Antes de continuar cualquier desarrollo, consultar Basic Memory en este orden:
 
-1. `docs/agent_memory.md`
-2. `docs/app_spec.md`
-3. `docs/roadmap.md`
+1. Construir contexto desde `AppWindows Operational Memory`.
+2. Leer `AppWindows Product Specification`.
+3. Leer `AppWindows Roadmap`.
+4. Revisar notas relacionadas si `build_context` devuelve relaciones relevantes.
 
-## Reglas de uso de cada documento
+Usar preferentemente las herramientas MCP de Basic Memory (`build_context`, `read_note`, `search_notes`, `edit_note`, `write_note`) en lugar de crear nuevos archivos locales de memoria.
 
-### `docs/agent_memory.md`
+## Reglas de uso de cada nota
+
+### `AppWindows Operational Memory`
 
 Mantiene el contexto acordado con el usuario y la memoria viva del trabajo.
 
@@ -27,7 +48,7 @@ Debe incluir:
 - Implementado hasta ahora.
 - Notas de build/deploy.
 
-### `docs/app_spec.md`
+### `AppWindows Product Specification`
 
 Define el producto/proyecto desde el punto de vista funcional y tecnico.
 
@@ -43,7 +64,7 @@ Debe incluir:
 - Riesgos conocidos.
 - Criterios de aceptacion.
 
-### `docs/roadmap.md`
+### `AppWindows Roadmap`
 
 Registra el historico operativo del proyecto y el estado actual del trabajo.
 
@@ -60,10 +81,11 @@ Debe incluir:
 
 Al cerrar una sesion de trabajo:
 
-1. Actualizar `docs/agent_memory.md` con nuevas decisiones, validaciones o riesgos.
-2. Actualizar `docs/roadmap.md` con lo terminado y lo pendiente.
-3. Ajustar `docs/app_spec.md` si cambia el alcance funcional o tecnico del producto.
+1. Actualizar `AppWindows Operational Memory` con nuevas decisiones, validaciones, riesgos o cambios de entorno.
+2. Actualizar `AppWindows Roadmap` con lo terminado y lo pendiente.
+3. Ajustar `AppWindows Product Specification` si cambia el alcance funcional o tecnico del producto.
 4. Dejar claro cualquier bloqueo o informacion pendiente de confirmar con el usuario.
+5. No recrear `docs/agent_memory.md`, `docs/app_spec.md` ni `docs/roadmap.md`; la memoria vive en Basic Memory.
 
 ## Reglas de versionado
 
