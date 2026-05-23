@@ -50,7 +50,6 @@ Se migraron los tres documentos del flujo anterior a notas estructuradas de Basi
 - [cleanup] Los archivos antiguos de memoria local deben eliminarse al terminar la migracion #cleanup
 
 ## Relations
-
 - created [[AppWindows Operational Memory]]
 - created [[AppWindows Product Specification]]
 - created [[AppWindows Roadmap]]

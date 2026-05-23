@@ -156,7 +156,6 @@ Criterios pendientes:
 - [pending] Definir importacion/exportacion compatible entre versiones #roadmap
 
 ## Relations
-
 - informs [[AppWindows Operational Memory]]
 - tracked_by [[AppWindows Roadmap]]
 - migrated_by [[AppWindows Memory Migration - 2026-05-23]]

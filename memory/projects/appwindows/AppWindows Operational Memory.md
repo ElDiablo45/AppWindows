@@ -118,6 +118,8 @@ Validaciones relevantes:
 - [risk] El alcance posterior a alumnos sigue pendiente de definir #product
 - [status] La migracion a Basic Memory quedo aplicada en el repositorio con commit local `323bfa9` #memory
 - [blocked] El push a `origin/main` queda pendiente de aprobacion explicita del usuario #git
+- [maintenance] Memory defrag ran on 2026-05-23 and kept the four-note core structure #memory
+- [maintenance] Defrag log lives in [[AppWindows Memory Defrag - 2026-05-23]] #memory
 
 ## Relations
 
