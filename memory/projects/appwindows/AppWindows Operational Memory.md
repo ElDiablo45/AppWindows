@@ -128,3 +128,13 @@ Validaciones relevantes:
 - specifies [[AppWindows Product Specification]]
 - tracks_work_in [[AppWindows Roadmap]]
 - migrated_by [[AppWindows Memory Migration - 2026-05-23]]
+
+## Update 2026-05-23 - WinUI Setup
+
+- [tooling] Ran `winui-setup` checks on 2026-05-23 #winui #setup
+- [tooling] `.NET SDK >= 8` requirement satisfied by installed SDKs `9.0.314` and `10.0.300` #dotnet #setup
+- [tooling] `Microsoft.WinAppCli` installed via winget; published package id uses `Cli` casing rather than `CLI` #winui #setup
+- [tooling] `winapp --version` works outside the sandbox and reports `0.3.1` from `C:\Users\mdavi\AppData\Local\Microsoft\WindowsApps\winapp.exe` #winui #setup
+- [tooling] Installed `Microsoft.WindowsAppSDK.WinUI.CSharp.Templates`; `dotnet new list` shows WinUI app templates including `winui-mvvm` outside the sandbox #winui #templates
+- [environment] Current sandbox shell may not resolve `winget` or `winapp` until PATH/App Execution Alias context is refreshed #windows #path
+- [pending] Developer Mode is disabled and requires explicit user approval plus UAC/admin elevation to enable #winui #setup
