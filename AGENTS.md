@@ -2,9 +2,13 @@
 
 Este repositorio usa Basic Memory como memoria operativa persistente para mantener continuidad entre sesiones de desarrollo. Los antiguos documentos de memoria en `docs/` fueron migrados y ya no son la fuente de verdad.
 
+La memoria de Basic Memory vive dentro del repositorio en `memory/` para que Git la versione junto con el codigo.
+
 ## Fuente de verdad de memoria
 
-Proyecto Basic Memory: `main`.
+Proyecto Basic Memory: `appwindows`.
+
+Ruta local versionable: `memory/`.
 
 Notas principales:
 
@@ -15,10 +19,10 @@ Notas principales:
 
 URLs de referencia:
 
-- `memory://main/projects/appwindows/app-windows-operational-memory`
-- `memory://main/projects/appwindows/app-windows-product-specification`
-- `memory://main/projects/appwindows/app-windows-roadmap`
-- `memory://main/projects/appwindows/app-windows-memory-migration-2026-05-23`
+- `memory://appwindows/projects/appwindows/app-windows-operational-memory`
+- `memory://appwindows/projects/appwindows/app-windows-product-specification`
+- `memory://appwindows/projects/appwindows/app-windows-roadmap`
+- `memory://appwindows/projects/appwindows/app-windows-memory-migration-2026-05-23`
 
 ## Orden obligatorio de lectura
 
@@ -85,7 +89,8 @@ Al cerrar una sesion de trabajo:
 2. Actualizar `AppWindows Roadmap` con lo terminado y lo pendiente.
 3. Ajustar `AppWindows Product Specification` si cambia el alcance funcional o tecnico del producto.
 4. Dejar claro cualquier bloqueo o informacion pendiente de confirmar con el usuario.
-5. No recrear `docs/agent_memory.md`, `docs/app_spec.md` ni `docs/roadmap.md`; la memoria vive en Basic Memory.
+5. No recrear `docs/agent_memory.md`, `docs/app_spec.md` ni `docs/roadmap.md`; la memoria vive en Basic Memory dentro de `memory/`.
+6. Versionar los cambios relevantes de `memory/` junto con los cambios de codigo o documentacion.
 
 ## Reglas de versionado
 
