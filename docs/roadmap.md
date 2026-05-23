@@ -25,6 +25,14 @@
 - Se adapto la interfaz a una direccion visual oscura tipo panel administrativo con menu lateral, cabecera, tabla y panel de detalle.
 - Se valido build Debug x64 del rediseño sin errores ni advertencias.
 
+### 2026-05-23
+
+- Se localizo Python 3.14.5 instalado fuera del PATH resoluble por el sandbox, en `C:\Users\mdavi\AppData\Local\Programs\Python\Python314`.
+- Se confirmo `winget` version `1.28.240` fuera del sandbox.
+- Se creo el entorno virtual Python del repositorio en `D:\AppWindows\.venv`.
+- Se valido que `.venv` usa Python `3.14.5` y `pip 26.1.1`.
+- Se agrego `.venv/` a `.gitignore`.
+
 ## Estado actual
 
 Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modulo `Alumnos` y persistencia SQLite local. Restore y build Debug x64 validados correctamente con .NET CLI.
@@ -59,6 +67,8 @@ Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modu
 - [x] Implementar detalle editable sin borrado.
 - [x] Implementar tags personalizados.
 - [x] Adaptar visualmente `Alumnos` a panel oscuro con sidebar y tabla.
+- [x] Crear entorno virtual Python 3.14.5 en `.venv`.
+- [x] Ignorar `.venv/` desde `.gitignore`.
 
 ## Checklist en curso
 

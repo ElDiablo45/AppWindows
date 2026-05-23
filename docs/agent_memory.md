@@ -61,6 +61,9 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
 - .NET SDKs instalados: `9.0.314` y `10.0.300`.
 - SDK predeterminado actual: `10.0.300`.
 - Runtimes instalados: .NET 8.0.27, .NET 9.0.16 y .NET 10.0.8.
+- Python 3.14.5 instalado en `C:\Users\mdavi\AppData\Local\Programs\Python\Python314`.
+- `winget` esta instalado y se resuelve fuera del sandbox como version `1.28.240`.
+- El PATH activo incluye `C:\Users\mdavi\AppData\Local\Microsoft\WindowsApps`, pero el sandbox puede bloquear el acceso a aliases como `python.exe` y `winget.exe` con `Acceso denegado`; usar ejecucion escalada si hay que consultar esos aliases.
 
 ## Implementado hasta ahora
 
@@ -88,6 +91,11 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
   - Cabecera superior con textura lineal sutil.
   - Tabla de alumnos con columnas de descripcion, telefono, tags y fecha de alta.
   - Panel derecho para alta/edicion.
+- Entorno virtual Python creado el 2026-05-23:
+  - Ruta: `D:\AppWindows\.venv`.
+  - Version validada: Python `3.14.5`.
+  - `pip` validado: `26.1.1`.
+  - Base del venv: `C:\Users\mdavi\AppData\Local\Programs\Python\Python314`.
 
 ## Notas de build/deploy
 
@@ -112,6 +120,11 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
 - Validacion visual del rediseño oscuro el 2026-05-22:
   - `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore`
   - Resultado: 0 errores y 0 advertencias.
+- Validacion del entorno Python el 2026-05-23:
+  - `.venv\Scripts\python.exe --version`
+  - Resultado: `Python 3.14.5`.
+  - `.venv\Scripts\python.exe -m pip --version`
+  - Resultado: `pip 26.1.1` desde `D:\AppWindows\.venv\Lib\site-packages\pip`.
 
 ## Riesgos activos
 
