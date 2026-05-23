@@ -64,6 +64,9 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
 - Python 3.14.5 instalado en `C:\Users\mdavi\AppData\Local\Programs\Python\Python314`.
 - `winget` esta instalado y se resuelve fuera del sandbox como version `1.28.240`.
 - El PATH activo incluye `C:\Users\mdavi\AppData\Local\Microsoft\WindowsApps`, pero el sandbox puede bloquear el acceso a aliases como `python.exe` y `winget.exe` con `Acceso denegado`; usar ejecucion escalada si hay que consultar esos aliases.
+- `uv` esta instalado dentro de `.venv` como `D:\AppWindows\.venv\Scripts\uv.exe`.
+- `basic-memory` esta instalado con `uv tool` y publica los comandos `basic-memory` y `bm` en `C:\Users\mdavi\.local\bin`.
+- `C:\Users\mdavi\.local\bin` esta agregado al PATH de usuario para poder ejecutar `bm` desde nuevas terminales.
 
 ## Implementado hasta ahora
 
@@ -96,6 +99,9 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
   - Version validada: Python `3.14.5`.
   - `pip` validado: `26.1.1`.
   - Base del venv: `C:\Users\mdavi\AppData\Local\Programs\Python\Python314`.
+- Basic Memory validado el 2026-05-23:
+  - `basic-memory v0.21.1` instalado con `uv tool`.
+  - `bm --help` ejecuta correctamente tras incluir `C:\Users\mdavi\.local\bin` en PATH.
 
 ## Notas de build/deploy
 
@@ -125,6 +131,11 @@ Crear una aplicacion de escritorio para Windows con WinUI 3 y Windows App SDK or
   - Resultado: `Python 3.14.5`.
   - `.venv\Scripts\python.exe -m pip --version`
   - Resultado: `pip 26.1.1` desde `D:\AppWindows\.venv\Lib\site-packages\pip`.
+- Validacion de Basic Memory el 2026-05-23:
+  - `.venv\Scripts\uv.exe tool list`
+  - Resultado: `basic-memory v0.21.1`, comandos `basic-memory` y `bm`.
+  - `bm --help`
+  - Resultado: muestra la ayuda de Basic Memory correctamente.
 
 ## Riesgos activos
 

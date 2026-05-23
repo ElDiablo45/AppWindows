@@ -32,6 +32,10 @@
 - Se creo el entorno virtual Python del repositorio en `D:\AppWindows\.venv`.
 - Se valido que `.venv` usa Python `3.14.5` y `pip 26.1.1`.
 - Se agrego `.venv/` a `.gitignore`.
+- Se diagnostico `bm` no reconocido tras `uv tool install basic-memory`.
+- Se confirmo `basic-memory v0.21.1` instalado con comandos `basic-memory` y `bm`.
+- Se agrego `C:\Users\mdavi\.local\bin` al PATH de usuario para resolver los ejecutables globales de `uv tool`.
+- Se valido `bm --help` correctamente.
 
 ## Estado actual
 
@@ -69,6 +73,8 @@ Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modu
 - [x] Adaptar visualmente `Alumnos` a panel oscuro con sidebar y tabla.
 - [x] Crear entorno virtual Python 3.14.5 en `.venv`.
 - [x] Ignorar `.venv/` desde `.gitignore`.
+- [x] Configurar PATH de usuario para ejecutar tools globales de `uv`.
+- [x] Validar comando `bm` de Basic Memory.
 
 ## Checklist en curso
 
