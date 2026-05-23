@@ -143,3 +143,11 @@ Validaciones relevantes:
 
 - [tooling] Developer Mode was enabled via elevated PowerShell on 2026-05-23; registry value `HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock\AllowDevelopmentWithoutDevLicense` is `1` #winui #setup
 - [status] `winui-setup` prerequisites are now satisfied: .NET SDK >= 8, WinApp CLI, WinUI templates and Developer Mode #winui #setup
+
+## Update 2026-05-23 - Inicio Dashboard
+
+- [status] Implemented `Inicio` as the default first screen with a dark dashboard layout inspired by the provided reference image #inicio #ux
+- [status] Sidebar navigation now switches between `Inicio` and `Alumnos`, keeping the existing students workflow intact #navigation #winui
+- [status] `Inicio` shows real SQLite-backed student totals, tag totals and recent students; notes/exams remain prepared placeholders without new tables #data #inicio
+- [validation] `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore` passed with 0 warnings and 0 errors after the dashboard implementation #qa
+- [risk] Manual visual validation in a live window is still pending #qa #ux

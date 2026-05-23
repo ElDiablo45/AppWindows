@@ -2,6 +2,7 @@ using AppWindows.Data;
 using AppWindows.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System.Collections.ObjectModel;
 
 namespace AppWindows;
@@ -11,6 +12,7 @@ public sealed partial class MainWindow : Window
     private readonly DatabaseService databaseService;
     private readonly StudentRepository studentRepository;
     private readonly ObservableCollection<Student> students = [];
+    private readonly ObservableCollection<Student> recentStudents = [];
     private readonly ObservableCollection<Tag> filterTags = [];
     private readonly List<Tag> availableTags = [];
     private readonly Dictionary<string, CheckBox> tagCheckBoxes = [];
@@ -26,11 +28,13 @@ public sealed partial class MainWindow : Window
         studentRepository = new StudentRepository(databaseService);
 
         StudentsListView.ItemsSource = students;
+        RecentStudentsListView.ItemsSource = recentStudents;
         FilterTagComboBox.ItemsSource = filterTags;
 
         LoadTags();
         ResetEditor();
         RefreshStudents();
+        ShowHomeView();
     }
 
     private void LoadTags(string? selectedTagId = null)
@@ -72,6 +76,65 @@ public sealed partial class MainWindow : Window
         {
             ResetEditor();
         }
+    }
+
+    private void RefreshHomeDashboard()
+    {
+        HomeStudentTotalTextBlock.Text = studentRepository.GetStudentCount().ToString();
+        HomeTagTotalTextBlock.Text = studentRepository.GetTagCount().ToString();
+
+        recentStudents.Clear();
+        foreach (var student in studentRepository.GetRecentStudents(4))
+        {
+            recentStudents.Add(student);
+        }
+
+        var hasRecentStudents = recentStudents.Count > 0;
+        RecentStudentsListView.Visibility = hasRecentStudents ? Visibility.Visible : Visibility.Collapsed;
+        RecentStudentsEmptyTextBlock.Visibility = hasRecentStudents ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    private void ShowHomeView()
+    {
+        HomeView.Visibility = Visibility.Visible;
+        StudentsView.Visibility = Visibility.Collapsed;
+        PageTitleTextBlock.Text = "Inicio";
+        PageSubtitleTextBlock.Text = "Resumen principal de la autoescuela y actividad reciente.";
+        RefreshHomeDashboard();
+        SetNavigationState(isHomeActive: true);
+    }
+
+    private void ShowStudentsView(bool startNewStudent)
+    {
+        HomeView.Visibility = Visibility.Collapsed;
+        StudentsView.Visibility = Visibility.Visible;
+        PageTitleTextBlock.Text = "Alumnos";
+        PageSubtitleTextBlock.Text = "Panel de busqueda y gestion de alumnos de la autoescuela.";
+        RefreshStudents();
+        SetNavigationState(isHomeActive: false);
+
+        if (startNewStudent)
+        {
+            ResetEditor();
+            FullNameTextBox.Focus(FocusState.Programmatic);
+        }
+    }
+
+    private void SetNavigationState(bool isHomeActive)
+    {
+        var activeBrush = GetBrush("NavActiveBrush");
+        var inactiveBrush = GetBrush("TransparentBrush");
+        var activeStrokeBrush = GetBrush("AccentGoldBrush");
+
+        HomeNavButton.Background = isHomeActive ? activeBrush : inactiveBrush;
+        HomeNavButton.BorderBrush = isHomeActive ? activeStrokeBrush : inactiveBrush;
+        StudentsNavButton.Background = isHomeActive ? inactiveBrush : activeBrush;
+        StudentsNavButton.BorderBrush = isHomeActive ? inactiveBrush : activeStrokeBrush;
+    }
+
+    private Brush GetBrush(string key)
+    {
+        return (Brush)RootGrid.Resources[key];
     }
 
     private void RenderTagCheckBoxes()
@@ -202,6 +265,7 @@ public sealed partial class MainWindow : Window
 
             var savedStudentId = selectedStudent.Id;
             RefreshStudents();
+            RefreshHomeDashboard();
             var refreshedStudent = students.FirstOrDefault(student => student.Id == savedStudentId);
             if (refreshedStudent is not null)
             {
@@ -232,6 +296,7 @@ public sealed partial class MainWindow : Window
             var tag = studentRepository.CreateCustomTag(CustomTagTextBox.Text);
             CustomTagTextBox.Text = string.Empty;
             LoadTags((FilterTagComboBox.SelectedItem as Tag)?.Id);
+            RefreshHomeDashboard();
 
             if (tagCheckBoxes.TryGetValue(tag.Id, out var checkBox))
             {
@@ -250,6 +315,42 @@ public sealed partial class MainWindow : Window
     {
         ResetEditor();
         FullNameTextBox.Focus(FocusState.Programmatic);
+    }
+
+    private void HomeNavButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowHomeView();
+    }
+
+    private void StudentsNavButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowStudentsView(startNewStudent: false);
+    }
+
+    private void QuickStudentButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowStudentsView(startNewStudent: true);
+    }
+
+    private void QuickNoteButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowStatus("El modulo de notas esta preparado para el siguiente paso.", InfoBarSeverity.Informational);
+    }
+
+    private void RecentStudentsListView_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        if (e.ClickedItem is not Student clickedStudent)
+        {
+            return;
+        }
+
+        ShowStudentsView(startNewStudent: false);
+        var matchingStudent = students.FirstOrDefault(student => student.Id == clickedStudent.Id);
+        if (matchingStudent is not null)
+        {
+            StudentsListView.SelectedItem = matchingStudent;
+            SelectStudent(matchingStudent);
+        }
     }
 
     private void CancelEditButton_Click(object sender, RoutedEventArgs e)

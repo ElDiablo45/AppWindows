@@ -159,3 +159,10 @@ Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modu
 
 - [history] Enabled Developer Mode and verified `AllowDevelopmentWithoutDevLicense=1` #winui #setup
 - [status] WinUI setup prerequisites are complete #winui #environment
+
+## Update 2026-05-23 - Inicio Dashboard
+
+- [history] Implemented the `Inicio` dashboard as the default first screen with sidebar navigation between `Inicio` and `Alumnos` #inicio #winui
+- [history] Added SQLite-backed recent students, total students and total tags to the dashboard without changing the schema #inicio #data
+- [validation] Debug x64 build passed with 0 warnings and 0 errors after implementing `Inicio` #qa
+- [todo] Run live-window visual review with the user to tune proportions and decide next dashboard widgets #ux #qa

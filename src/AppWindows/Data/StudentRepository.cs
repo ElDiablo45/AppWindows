@@ -41,6 +41,46 @@ public sealed class StudentRepository
         return students;
     }
 
+    public List<Student> GetRecentStudents(int count)
+    {
+        using var connection = OpenConnection();
+        using var command = connection.CreateCommand();
+        command.CommandText =
+            """
+            SELECT Id, FullName, DniNie, Phone, CreatedAt, Notes
+            FROM Students
+            ORDER BY CreatedAt DESC, FullName COLLATE NOCASE
+            LIMIT $count;
+            """;
+        command.Parameters.AddWithValue("$count", Math.Max(0, count));
+
+        var students = new List<Student>();
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            students.Add(ReadStudent(reader));
+        }
+
+        HydrateTags(connection, students);
+        return students;
+    }
+
+    public int GetStudentCount()
+    {
+        using var connection = OpenConnection();
+        using var command = connection.CreateCommand();
+        command.CommandText = "SELECT COUNT(*) FROM Students;";
+        return Convert.ToInt32(command.ExecuteScalar());
+    }
+
+    public int GetTagCount()
+    {
+        using var connection = OpenConnection();
+        using var command = connection.CreateCommand();
+        command.CommandText = "SELECT COUNT(*) FROM Tags;";
+        return Convert.ToInt32(command.ExecuteScalar());
+    }
+
     public Student CreateStudent(string fullName, string dniNie, string phone, string notes, IReadOnlyCollection<string> tagIds)
     {
         var student = new Student

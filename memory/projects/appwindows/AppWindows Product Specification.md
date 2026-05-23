@@ -159,3 +159,11 @@ Criterios pendientes:
 - informs [[AppWindows Operational Memory]]
 - tracked_by [[AppWindows Roadmap]]
 - migrated_by [[AppWindows Memory Migration - 2026-05-23]]
+
+## Update 2026-05-23 - Inicio Dashboard
+
+- [requirement] The app opens on `Inicio`, a dashboard-style first screen for operational overview #inicio
+- [requirement] `Inicio` includes quick actions for notes and creating a new student, with the student action navigating to the existing `Alumnos` editor #inicio #students
+- [requirement] `Inicio` displays real counts for students and tags plus the latest students from SQLite #inicio #data
+- [constraint] Notes, exam dates and exam appointments are prepared UI placeholders in this step and do not add new persistence tables #inicio #scope
+- [ux] `Inicio` follows the provided dark dashboard reference: thin borders, compact cards, topographic header texture and modular widgets #ux
