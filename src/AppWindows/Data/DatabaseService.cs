@@ -4,7 +4,7 @@ namespace AppWindows.Data;
 
 public sealed class DatabaseService
 {
-    private const int SchemaVersion = 1;
+    private const int SchemaVersion = 2;
 
     private static readonly string[] PresetTags =
     [
@@ -97,6 +97,41 @@ public sealed class DatabaseService
                 PRIMARY KEY (StudentId, TagId),
                 FOREIGN KEY (StudentId) REFERENCES Students(Id) ON DELETE CASCADE,
                 FOREIGN KEY (TagId) REFERENCES Tags(Id) ON DELETE CASCADE
+            );
+            """);
+
+        ExecuteNonQuery(
+            connection,
+            """
+            CREATE TABLE IF NOT EXISTS InvoiceTemplates (
+                Id TEXT PRIMARY KEY,
+                Name TEXT NOT NULL COLLATE NOCASE UNIQUE,
+                Concept TEXT NOT NULL,
+                Amount TEXT NOT NULL,
+                TaxRate TEXT NOT NULL,
+                Notes TEXT NOT NULL DEFAULT '',
+                CreatedAt TEXT NOT NULL
+            );
+            """);
+
+        ExecuteNonQuery(
+            connection,
+            """
+            CREATE TABLE IF NOT EXISTS Invoices (
+                Id TEXT PRIMARY KEY,
+                Number TEXT NOT NULL COLLATE NOCASE UNIQUE,
+                StudentId TEXT NOT NULL,
+                TemplateId TEXT NULL,
+                IssueDate TEXT NOT NULL,
+                DueDate TEXT NULL,
+                Concept TEXT NOT NULL,
+                Amount TEXT NOT NULL,
+                TaxRate TEXT NOT NULL,
+                Notes TEXT NOT NULL DEFAULT '',
+                Status TEXT NOT NULL DEFAULT 'draft',
+                CreatedAt TEXT NOT NULL,
+                FOREIGN KEY (StudentId) REFERENCES Students(Id),
+                FOREIGN KEY (TemplateId) REFERENCES InvoiceTemplates(Id) ON DELETE SET NULL
             );
             """);
 

@@ -99,6 +99,29 @@
                                     Text="Alumnos" />
                             </StackPanel>
                         </Button>
+                        <Button
+                            x:Name="InvoicesNavButton"
+                            AutomationProperties.AutomationId="InvoicesNavButton"
+                            Height="30"
+                            Padding="6,0"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            Background="{StaticResource TransparentBrush}"
+                            BorderBrush="{StaticResource TransparentBrush}"
+                            BorderThickness="2,0,0,0"
+                            Click="InvoicesNavButton_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <SymbolIcon
+                                    Width="15"
+                                    Height="15"
+                                    Foreground="{StaticResource MutedTextBrush}"
+                                    Symbol="Document" />
+                                <TextBlock
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Text="Facturas" />
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -228,6 +251,43 @@
                                         FontSize="11"
                                         FontWeight="SemiBold"
                                         Text="Crear un alumno nuevo" />
+                                </StackPanel>
+
+                                <SymbolIcon
+                                    Grid.Column="1"
+                                    Width="16"
+                                    Height="16"
+                                    VerticalAlignment="Center"
+                                    Symbol="Add" />
+                            </Grid>
+                        </Button>
+
+                        <Button
+                            x:Name="QuickInvoiceButton"
+                            AutomationProperties.AutomationId="QuickInvoiceButton"
+                            Width="180"
+                            Height="48"
+                            Padding="12,0"
+                            HorizontalContentAlignment="Stretch"
+                            Background="{StaticResource SurfaceBrush}"
+                            BorderBrush="{StaticResource StrokeBrush}"
+                            BorderThickness="1"
+                            Click="QuickInvoiceButton_Click">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel VerticalAlignment="Center" Spacing="2">
+                                    <TextBlock
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Text="Facturas" />
+                                    <TextBlock
+                                        FontSize="11"
+                                        FontWeight="SemiBold"
+                                        Text="Crear factura" />
                                 </StackPanel>
 
                                 <SymbolIcon
@@ -891,6 +951,380 @@
                                         x:Name="SaveStudentButton"
                                         Padding="12,0"
                                         Click="SaveStudentButton_Click">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <SymbolIcon Symbol="Save" />
+                                            <TextBlock Text="Guardar" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+
+                <Grid
+                    x:Name="InvoicesView"
+                    Margin="0,8,0,0"
+                    ColumnSpacing="10"
+                    Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="392" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid
+                        Grid.Column="0"
+                        Background="{StaticResource SurfaceBrush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid
+                            Grid.Row="0"
+                            Padding="10,8"
+                            ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220" />
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox
+                                x:Name="InvoiceSearchTextBox"
+                                Height="32"
+                                PlaceholderText="Buscar factura"
+                                TextChanged="InvoiceSearchTextBox_TextChanged" />
+
+                            <ComboBox
+                                x:Name="InvoiceStatusFilterComboBox"
+                                Grid.Column="1"
+                                Height="32"
+                                DisplayMemberPath="Name"
+                                SelectionChanged="InvoiceStatusFilterComboBox_SelectionChanged" />
+
+                            <Button
+                                x:Name="NewInvoiceButton"
+                                Grid.Column="3"
+                                Height="32"
+                                Padding="10,0"
+                                Click="NewInvoiceButton_Click">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <SymbolIcon Symbol="Add" />
+                                    <TextBlock Text="Nueva factura" />
+                                </StackPanel>
+                            </Button>
+
+                            <Button
+                                x:Name="SaveInvoiceTemplateButton"
+                                Grid.Column="4"
+                                Height="32"
+                                Padding="10,0"
+                                Click="SaveInvoiceTemplateButton_Click">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <SymbolIcon Symbol="Library" />
+                                    <TextBlock Text="Guardar plantilla" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+
+                        <StackPanel
+                            Grid.Row="1"
+                            Margin="10,0,0,0"
+                            Orientation="Horizontal"
+                            Spacing="14">
+                            <TextBlock
+                                Foreground="White"
+                                FontSize="12"
+                                Text="All" />
+                            <TextBlock
+                                x:Name="InvoiceCountTextBlock"
+                                Foreground="{StaticResource MutedTextBrush}"
+                                FontSize="12" />
+                        </StackPanel>
+
+                        <Border
+                            Grid.Row="2"
+                            Margin="0,6,0,0"
+                            BorderBrush="{StaticResource StrokeBrush}"
+                            BorderThickness="0,0,0,1">
+                            <Grid
+                                Height="34"
+                                Padding="12,0"
+                                ColumnSpacing="12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.2*" />
+                                    <ColumnDefinition Width="1.6*" />
+                                    <ColumnDefinition Width="1.8*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="48" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Numero" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Cliente" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Concepto" />
+                                <TextBlock
+                                    Grid.Column="3"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Total" />
+                                <TextBlock
+                                    Grid.Column="4"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Text="Estado" />
+                            </Grid>
+                        </Border>
+
+                        <ListView
+                            x:Name="InvoicesListView"
+                            Grid.Row="3"
+                            Background="{StaticResource SurfaceBrush}"
+                            BorderBrush="{StaticResource StrokeBrush}"
+                            BorderThickness="0"
+                            SelectionChanged="InvoicesListView_SelectionChanged">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid
+                                        MinHeight="58"
+                                        Padding="12,6"
+                                        ColumnSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1.2*" />
+                                            <ColumnDefinition Width="1.6*" />
+                                            <ColumnDefinition Width="1.8*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="48" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock
+                                                FontSize="12"
+                                                FontWeight="SemiBold"
+                                                Text="{Binding Number}" />
+                                            <TextBlock
+                                                Foreground="{StaticResource MutedTextBrush}"
+                                                FontSize="11"
+                                                Text="{Binding IssueDateDisplay}" />
+                                        </StackPanel>
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            Foreground="#D4D4D4"
+                                            FontSize="12"
+                                            Text="{Binding ClientName}" />
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            Foreground="#D4D4D4"
+                                            FontSize="12"
+                                            Text="{Binding Concept}" />
+                                        <TextBlock
+                                            Grid.Column="3"
+                                            VerticalAlignment="Center"
+                                            FontSize="12"
+                                            FontWeight="SemiBold"
+                                            Text="{Binding TotalDisplay}" />
+                                        <TextBlock
+                                            Grid.Column="4"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource MutedTextBrush}"
+                                            FontSize="12"
+                                            Text="{Binding StatusDisplay}" />
+                                        <SymbolIcon
+                                            Grid.Column="5"
+                                            Width="16"
+                                            Height="16"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource MutedTextBrush}"
+                                            Symbol="View" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+
+                    <Border
+                        Grid.Column="1"
+                        Margin="0,0,10,10"
+                        Padding="14"
+                        Background="{StaticResource PanelBrush}"
+                        BorderBrush="{StaticResource StrokeBrush}"
+                        BorderThickness="1">
+                        <ScrollViewer>
+                            <Grid RowSpacing="14">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Spacing="3">
+                                        <TextBlock
+                                            x:Name="InvoiceEditorTitleTextBlock"
+                                            FontSize="18"
+                                            FontWeight="SemiBold"
+                                            Text="Nueva factura" />
+                                        <TextBlock
+                                            x:Name="InvoiceEditorSubtitleTextBlock"
+                                            Foreground="{StaticResource MutedTextBrush}"
+                                            FontSize="12"
+                                            Text="Cliente, numero y concepto son obligatorios" />
+                                    </StackPanel>
+
+                                    <TextBlock
+                                        x:Name="InvoiceTotalPreviewTextBlock"
+                                        Grid.Column="1"
+                                        VerticalAlignment="Bottom"
+                                        FontSize="16"
+                                        FontWeight="SemiBold"
+                                        Text="0,00 EUR" />
+                                </Grid>
+
+                                <Grid
+                                    Grid.Row="1"
+                                    ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox
+                                        x:Name="InvoiceNumberTextBox"
+                                        Header="Numero"
+                                        PlaceholderText="F-2026-0001" />
+                                    <ComboBox
+                                        x:Name="InvoiceStatusComboBox"
+                                        Grid.Column="1"
+                                        Header="Estado"
+                                        DisplayMemberPath="Name" />
+                                </Grid>
+
+                                <ComboBox
+                                    x:Name="InvoiceClientComboBox"
+                                    Grid.Row="2"
+                                    Header="Cliente"
+                                    DisplayMemberPath="FullName"
+                                    PlaceholderText="Selecciona cliente" />
+
+                                <ComboBox
+                                    x:Name="InvoiceTemplateComboBox"
+                                    Grid.Row="3"
+                                    Header="Plantilla"
+                                    DisplayMemberPath="Name"
+                                    SelectionChanged="InvoiceTemplateComboBox_SelectionChanged" />
+
+                                <Grid
+                                    Grid.Row="4"
+                                    ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <CalendarDatePicker
+                                        x:Name="InvoiceIssueDatePicker"
+                                        Header="Emision" />
+                                    <CalendarDatePicker
+                                        x:Name="InvoiceDueDatePicker"
+                                        Grid.Column="1"
+                                        Header="Vencimiento" />
+                                </Grid>
+
+                                <TextBox
+                                    x:Name="InvoiceConceptTextBox"
+                                    Grid.Row="5"
+                                    Header="Concepto"
+                                    PlaceholderText="Matricula, practica, tasa..." />
+
+                                <Grid
+                                    Grid.Row="6"
+                                    ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <NumberBox
+                                        x:Name="InvoiceAmountNumberBox"
+                                        Header="Base imponible"
+                                        Minimum="0"
+                                        SpinButtonPlacementMode="Compact"
+                                        ValueChanged="InvoiceAmountNumberBox_ValueChanged" />
+                                    <NumberBox
+                                        x:Name="InvoiceTaxNumberBox"
+                                        Grid.Column="1"
+                                        Header="IVA %"
+                                        Minimum="0"
+                                        SpinButtonPlacementMode="Compact"
+                                        ValueChanged="InvoiceAmountNumberBox_ValueChanged" />
+                                </Grid>
+
+                                <TextBox
+                                    x:Name="InvoiceTemplateNameTextBox"
+                                    Grid.Row="7"
+                                    Header="Nombre de plantilla rapida"
+                                    PlaceholderText="Ej. Matricula completa" />
+
+                                <TextBox
+                                    x:Name="InvoiceNotesTextBox"
+                                    Grid.Row="8"
+                                    AcceptsReturn="True"
+                                    Header="Notas"
+                                    Height="88"
+                                    PlaceholderText="Condiciones, detalle interno o recordatorios"
+                                    TextWrapping="Wrap" />
+
+                                <StackPanel
+                                    Grid.Row="9"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <Button
+                                        x:Name="CancelInvoiceEditButton"
+                                        Click="CancelInvoiceEditButton_Click"
+                                        Content="Limpiar" />
+                                    <Button
+                                        x:Name="SaveInvoiceButton"
+                                        Padding="12,0"
+                                        Click="SaveInvoiceButton_Click">
                                         <StackPanel Orientation="Horizontal" Spacing="8">
                                             <SymbolIcon Symbol="Save" />
                                             <TextBlock Text="Guardar" />

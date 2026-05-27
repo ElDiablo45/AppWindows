@@ -151,3 +151,13 @@ Validaciones relevantes:
 - [status] `Inicio` shows real SQLite-backed student totals, tag totals and recent students; notes/exams remain prepared placeholders without new tables #data #inicio
 - [validation] `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore` passed with 0 warnings and 0 errors after the dashboard implementation #qa
 - [risk] Manual visual validation in a live window is still pending #qa #ux
+
+## Update 2026-05-27 - Facturas
+
+- [status] Implemented a new `Facturas` section connected to the existing `Students` table as the current client source #facturas #clients #data
+- [status] Added SQLite schema v2 tables `InvoiceTemplates` and `Invoices`; invoices store number, linked student/client, optional template, dates, concept, amount, tax rate, notes and status #facturas #sqlite
+- [status] Added invoice templates for quick reuse; users can save the current invoice configuration as a named reusable template #facturas #templates
+- [status] Sidebar navigation now switches between `Inicio`, `Alumnos` and `Facturas`; `Inicio` includes a quick action to create an invoice #navigation #winui
+- [validation] `dotnet build AppWindows.sln -c Debug -p:Platform=x64 --no-restore` passed with 0 warnings and 0 errors after the invoice implementation #qa
+- [risk] Manual visual validation in a live WinUI window is still pending #qa #ux
+- [pending] Confirm whether the product vocabulary should rename `Alumnos` to `Clientes` in the UI/database-facing language #product #ux

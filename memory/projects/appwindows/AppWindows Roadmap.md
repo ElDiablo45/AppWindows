@@ -166,3 +166,13 @@ Aplicacion WinUI 3 convertida en una primera herramienta de autoescuela con modu
 - [history] Added SQLite-backed recent students, total students and total tags to the dashboard without changing the schema #inicio #data
 - [validation] Debug x64 build passed with 0 warnings and 0 errors after implementing `Inicio` #qa
 - [todo] Run live-window visual review with the user to tune proportions and decide next dashboard widgets #ux #qa
+
+## Update 2026-05-27 - Facturas
+
+- [history] Implemented the first `Facturas` module with invoice list, search, status filter, editor and reusable templates #facturas #timeline
+- [history] Connected invoices to existing `Alumnos` records so a selected client supplies the invoice relationship #facturas #clients
+- [history] Added SQLite schema v2 and repository/model classes for invoices and invoice templates #sqlite #architecture
+- [validation] Debug x64 build passed with 0 warnings and 0 errors after implementing `Facturas` #qa
+- [done] Define and implement the first module of facturas/cobros as invoice creation and template reuse #roadmap
+- [todo] Validate the `Facturas` screen visually in a live app window with the user #qa #ux
+- [todo] Confirm next billing features: PDF/export, printing, payment tracking depth, taxes/numbering rules and whether `Alumnos` should be renamed to `Clientes` #facturas #product

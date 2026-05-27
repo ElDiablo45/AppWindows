@@ -167,3 +167,14 @@ Criterios pendientes:
 - [requirement] `Inicio` displays real counts for students and tags plus the latest students from SQLite #inicio #data
 - [constraint] Notes, exam dates and exam appointments are prepared UI placeholders in this step and do not add new persistence tables #inicio #scope
 - [ux] `Inicio` follows the provided dark dashboard reference: thin borders, compact cards, topographic header texture and modular widgets #ux
+
+## Update 2026-05-27 - Facturas
+
+- [requirement] The app includes a `Facturas` section where users can create invoices linked to an existing student/client #facturas #clients
+- [requirement] The user can choose a client from the existing `Alumnos` data source when creating an invoice #facturas #data
+- [requirement] The user can create and reuse invoice templates with name, concept, base amount, tax rate and notes #facturas #templates
+- [requirement] Invoices support number, issue date, due date, concept, base amount, tax rate, notes and status (`draft`, `issued`, `paid`) #facturas
+- [requirement] The invoice editor lets users apply a template and then customize the invoice fields before saving #facturas #ux
+- [architecture] SQLite schema version is now `2` with `InvoiceTemplates` and `Invoices` tables #sqlite #architecture
+- [acceptance] Debug x64 build must remain clean after invoice changes #qa
+- [pending] Decide whether invoice output/export/printing/PDF generation belongs in the next invoice iteration #facturas #roadmap
